@@ -1,0 +1,121 @@
+body {
+    background-color: #f8f9fa;
+}
+
+.container {
+    background-color: #ffffff;
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+h2 {
+    color: #343a40;
+    font-weight: bold;
+}
+
+.card-header {
+    font-weight: bold;
+}
+
+.table th, .table td {
+    vertical-align: middle;
+}
+
+.table thead th {
+    background-color: #e9ecef;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .container {
+        padding: 15px;
+    }
+
+    .table thead {
+        display: none; /* Hide table headers on small screens */
+    }
+
+    .table tbody tr {
+        display: block; /* Make table rows block elements */
+        margin-bottom: 15px;
+        border: 1px solid #dee2e6;
+        border-radius: 5px;
+        padding: 10px;
+    }
+
+    .table tbody td {
+        display: flex;
+        justify-content: space-between;
+        padding: 5px 0;
+        border: none; /* Remove individual cell borders */
+    }
+
+    .table tbody td::before {
+        content: attr(data-label);
+        font-weight: bold;
+        margin-right: 10px;
+    }
+
+    /* Specific adjustments for input fields within table cells */
+    .table tbody td input[type="text"],
+    .table tbody td input[type="number"] {
+        width: 60%; /* Adjust input width for better mobile display */
+        text-align: right;
+    }
+
+    .table tbody td:last-child {
+        text-align: center;
+    }
+
+    .d-md-flex {
+        flex-direction: column;
+    }
+
+    .d-grid.gap-2 {
+        gap: 10px !important;
+    }
+}
+
+.item-amount-wide {
+    width: 20%; /* Adjust as needed */
+    min-width: 100px;
+}
+
+.item-no {
+    text-align: center;
+}
+
+.item-unit-price {
+    text-align: right;
+}
+
+.item-amount {
+    text-align: right;
+}
+
+.item-quantity {
+    text-align: center;
+}
+
+@media print {
+    .row {
+        display: flex !important; /* Ensure flexbox behavior */
+        flex-wrap: nowrap !important; /* Prevent wrapping to new lines */
+    }
+    .col-md-6 {
+        flex: 0 0 50% !important; /* Force 50% width */
+        max-width: 50% !important; /* Ensure it doesn't exceed 50% */
+    }
+    .mb-4 {
+        margin-bottom: 0 !important; /* Remove bottom margin for cards */
+    }
+    .container {
+        width: 100% !important; /* Ensure container uses full print width */
+        padding: 0 !important; /* Remove padding for print */
+    }
+    /* Hide buttons and other non-essential print elements */
+    #addItemBtn, #deleteLastItemBtn, #printBtn, .d-grid.gap-2 {
+        display: none !important;
+    }
+}
