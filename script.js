@@ -73,7 +73,16 @@ document.addEventListener('DOMContentLoaded', function() {
 
     addItemBtn.addEventListener('click', createNewItemRow);
     printBtn.addEventListener('click', function() {
-        window.print();
+        const statement = document.querySelector('.container'); // The element to capture
+        html2canvas(statement).then(canvas => {
+            const imageURL = canvas.toDataURL('image/png');
+            const downloadLink = document.createElement('a');
+            downloadLink.href = imageURL;
+            downloadLink.download = '거래명세서.png';
+            document.body.appendChild(downloadLink);
+            downloadLink.click();
+            document.body.removeChild(downloadLink);
+        });
     });
 
     const deleteLastItemBtn = document.getElementById('deleteLastItemBtn'); // New button
