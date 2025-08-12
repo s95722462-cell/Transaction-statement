@@ -119,3 +119,7 @@ h2 {
         display: none !important;
     }
 }
+
+#grandTotal {
+    text-align: right !important;
+}
