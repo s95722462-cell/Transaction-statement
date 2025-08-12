@@ -76,12 +76,21 @@ document.addEventListener('DOMContentLoaded', function() {
         const statement = document.querySelector('.container'); // The element to capture
         html2canvas(statement).then(canvas => {
             const imageURL = canvas.toDataURL('image/png');
-            const downloadLink = document.createElement('a');
-            downloadLink.href = imageURL;
-            downloadLink.download = '거래명세서.png';
-            document.body.appendChild(downloadLink);
-            downloadLink.click();
-            document.body.removeChild(downloadLink);
+            const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
+
+            if (isIOS) {
+                // For iOS, open the image in a new tab for the user to save manually.
+                const newTab = window.open();
+                newTab.document.body.innerHTML = `<img src="${imageURL}" style="width:100%;">`;
+            } else {
+                // For other devices, trigger a direct download.
+                const downloadLink = document.createElement('a');
+                downloadLink.href = imageURL;
+                downloadLink.download = '거래명세서.png';
+                document.body.appendChild(downloadLink);
+                downloadLink.click();
+                document.body.removeChild(downloadLink);
+            }
         });
     });
 
